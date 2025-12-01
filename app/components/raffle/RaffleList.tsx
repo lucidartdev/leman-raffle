@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import { useRaffle, RaffleItem } from '../../hooks/useRaffle';
 import { Timer, Trophy, Wallet } from 'lucide-react';
