@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+"use client"
+
+import { useState } from 'react';
 import { useRaffle } from '../../hooks/useRaffle';
 import { Loader2, Plus, Clock, Ticket } from 'lucide-react';
 
