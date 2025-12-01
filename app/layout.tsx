@@ -1,15 +1,29 @@
-"use client"
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Web3Provider } from "./context/Web3Provider";
+import { Navbar } from "./components/Navbar";
 
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './page'
-import './globals.css'
-import { Web3Provider } from './context/Web3Provider'
+const inter = Inter({ subsets: ["latin"] });
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Web3Provider>
-      <App />
-    </Web3Provider>
-  </React.StrictMode>,
-)
+export const metadata: Metadata = {
+  title: "LemanRaffle",
+  description: "Decentralized Raffle on Base",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${inter.className} bg-slate-950 text-white`}>
+        <Web3Provider>
+          <Navbar />
+          {children}
+        </Web3Provider>
+      </body>
+    </html>
+  );
+}
