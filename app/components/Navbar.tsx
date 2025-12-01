@@ -13,7 +13,6 @@ export const Navbar = () => {
           <span className="font-bold text-xl tracking-tight">LemanRaffle</span>
         </div>
 
-        {/* Reown Connect Button - Magic happens here */}
         <appkit-button />
         
       </div>
