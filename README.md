@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LemanRaffle 🎲
 
-## Getting Started
+A modern, decentralized raffle platform built on the **Base** blockchain. Create transparent, provably fair raffles with instant transactions and minimal gas fees.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **🔐 Decentralized & Trustless**: All logic runs on-chain via smart contracts. No intermediaries.
+- **🎲 Provably Fair**: Winners selected randomly using blockchain-based randomness (`prevrandao`).
+- **⚡ Lightning Fast**: Built on Base L2 for instant transaction finality and minimal gas fees.
+- **🎨 Modern UI/UX**: Beautiful, responsive design using **Tailwind CSS 4** and **Framer Motion**.
+- **🌐 Web3 Integration**: Seamless wallet connection via **Reown AppKit**.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Technology Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Language**: TypeScript
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Blockchain**: [Base Mainnet](https://base.org/)
+- **Web3 Auth**: [Reown AppKit](https://reown.com/)
+- **Interaction**: [Ethers.js v6](https://docs.ethers.org/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 18+ installed
+- An Ethereum Wallet (MetaMask, Coinbase Wallet, etc.)
+- A Reown Cloud Project ID (Get it free at [cloud.reown.com](https://cloud.reown.com))
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone the repository**
+   ```bash
+   git clone [https://github.com/lucidartdev/leman-raffle.git](https://github.com/lucidartdev/leman-raffle.git)
+   cd leman-raffle
+   ```
+2. **Install dependencies**
+   ```bash
+   npm-install
+   ```
+ 3. **Configure Environment Create a .env.local file in the root directory:**
+   ```bash
+   NEXT_PUBLIC_PROJECT_ID=your_reown_project_id_here
+   ```
+ 4. **Run Development Server**
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+📄 License
+Distributed under the MIT License.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by lucidartdev
