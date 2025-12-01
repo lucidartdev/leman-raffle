@@ -46,3 +46,8 @@ A modern, decentralized raffle platform built on the **Base** blockchain. Create
    ```bash
    npm run dev
    ```
+
+📄 License
+Distributed under the MIT License.
+
+Built by lucidartdev
