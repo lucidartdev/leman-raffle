@@ -5,7 +5,6 @@ import { Timer, Trophy, Wallet } from 'lucide-react';
 export const RaffleList = () => {
   const { raffles, buyTicket, loading, isConnected } = useRaffle();
 
-  // Helper to format address (e.g., 0x123...abc)
   const shortenAddress = (addr: string) => 
     `${addr.slice(0, 6)}...${addr.slice(-4)}`;
 
