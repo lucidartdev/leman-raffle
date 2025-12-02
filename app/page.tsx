@@ -3,7 +3,7 @@ import { RaffleList } from "./components/raffle/RaffleList";
 
 export default function Home() {
   return (
-    <main className="max-w-7xl mx-auto px-4 py-12">
+    <main className="max-w-7xl mx-auto px-4 pt-32 pb-12">
       {/* Header Section */}
       <div className="text-center mb-12 space-y-4">
         <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">

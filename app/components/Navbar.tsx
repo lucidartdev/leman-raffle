@@ -2,20 +2,28 @@ import React from 'react';
 
 export const Navbar = () => {
   return (
-    <nav className="border-b border-white/10 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+      <nav className="glass-panel rounded-full px-6 py-3 flex items-center justify-between w-full max-w-4xl">
         
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold">
-            L
+        <div className="flex items-center gap-3">
+          <div className="relative w-8 h-8 flex items-center justify-center">
+            <div className="absolute inset-0 bg-blue-500 blur-md opacity-50 rounded-full"></div>
+            <div className="relative w-full h-full bg-gradient-to-br from-blue-500 to-violet-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg">
+              L
+            </div>
           </div>
-          <span className="font-bold text-xl tracking-tight">LemanRaffle</span>
+          <span className="font-bold text-lg tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+            LemanRaffle
+          </span>
         </div>
 
-        <appkit-button />
+        {/* Reown Connect Button */}
+        <div className="scale-90 origin-right">
+          <appkit-button />
+        </div>
         
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };

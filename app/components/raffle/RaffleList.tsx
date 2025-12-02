@@ -1,19 +1,19 @@
-"use client"
+'use client';
 
 import React from 'react';
 import { useRaffle, RaffleItem } from '../../hooks/useRaffle';
-import { Timer, Trophy, Wallet } from 'lucide-react';
+import { Clock, Ticket } from 'lucide-react';
 
 export const RaffleList = () => {
   const { raffles, buyTicket, loading, isConnected } = useRaffle();
 
-  const shortenAddress = (addr: string) => 
-    `${addr.slice(0, 6)}...${addr.slice(-4)}`;
-
   if (raffles.length === 0) {
     return (
-      <div className="text-center text-slate-500 py-12">
-        <p>No active raffles found. Be the first to create one!</p>
+      <div className="text-center py-20">
+        <div className="inline-block p-4 rounded-full bg-white/5 border border-white/10 mb-4">
+          <Ticket className="w-8 h-8 text-slate-500" />
+        </div>
+        <p className="text-slate-500">No active signals found.</p>
       </div>
     );
   }
@@ -23,61 +23,70 @@ export const RaffleList = () => {
       {raffles.map((raffle: RaffleItem) => (
         <div 
           key={raffle.id}
-          className={`relative group bg-slate-900/50 backdrop-blur-md border ${
-            raffle.isActive ? 'border-white/10' : 'border-red-900/30 opacity-75'
-          } rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300`}
+          className={`group relative glass-panel rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20`}
         >
-          {/* Header */}
-          <div className="p-6 pb-4 border-b border-white/5">
-            <div className="flex justify-between items-start mb-2">
-              <span className="text-xs font-mono text-slate-500 bg-slate-950 px-2 py-1 rounded">
-                #{raffle.id}
-              </span>
-              <span className={`text-xs px-2 py-1 rounded-full ${
-                raffle.isActive ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
-              }`}>
-                {raffle.isActive ? 'Active' : 'Ended'}
-              </span>
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-1">
-              {raffle.prize} ETH
-            </h3>
-            <p className="text-sm text-slate-400">Prize Pool</p>
-          </div>
+          {/* Active Status Glow Line */}
+          <div className={`absolute top-0 left-0 w-full h-1 ${
+            raffle.isActive 
+              ? 'bg-gradient-to-r from-blue-500 via-violet-500 to-blue-500 animate-pulse' 
+              : 'bg-slate-700'
+          }`} />
 
-          {/* Details */}
-          <div className="p-6 pt-4 space-y-4">
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2 text-slate-400">
-                <Wallet className="w-4 h-4" />
-                <span>Ticket Price</span>
+          <div className="p-6">
+            <div className="flex justify-between items-start mb-6">
+              <span className="font-mono text-xs text-slate-500 border border-white/10 px-2 py-1 rounded">
+                ID: {raffle.id.toString().padStart(3, '0')}
+              </span>
+              {raffle.isActive ? (
+                <span className="flex items-center gap-1.5 text-xs text-green-400 font-medium bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  LIVE
+                </span>
+              ) : (
+                <span className="text-xs text-slate-500 font-medium bg-slate-800/50 px-3 py-1 rounded-full">
+                  ENDED
+                </span>
+              )}
+            </div>
+
+            <div className="text-center py-4 mb-4 relative">
+              <div className="absolute inset-0 bg-blue-500/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <h3 className="text-4xl font-bold text-white relative z-10 font-mono tracking-tighter">
+                {raffle.prize} <span className="text-lg text-slate-400">ETH</span>
+              </h3>
+              <p className="text-xs text-slate-400 uppercase tracking-widest mt-1">Prize Pool</p>
+            </div>
+
+            <div className="space-y-3 pt-4 border-t border-white/5">
+              <div className="flex justify-between text-sm">
+                <span className="text-slate-400 flex items-center gap-2">
+                  <Ticket className="w-4 h-4" /> Entry
+                </span>
+                <span className="font-mono text-white">{raffle.price} ETH</span>
               </div>
-              <span className="font-semibold text-white">{raffle.price} ETH</span>
-            </div>
-
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2 text-slate-400">
-                <Trophy className="w-4 h-4" />
-                <span>Creator</span>
+              
+              <div className="flex justify-between text-sm">
+                <span className="text-slate-400 flex items-center gap-2">
+                  <Clock className="w-4 h-4" /> Ends
+                </span>
+                <span className="font-mono text-slate-300">
+                  {new Date(raffle.endTime * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                </span>
               </div>
-              <span className="font-mono text-blue-400">
-                {shortenAddress(raffle.creator)}
-              </span>
             </div>
 
-            {/* Action Button */}
             {raffle.isActive ? (
               <button
                 onClick={() => buyTicket(raffle.id, raffle.price)}
                 disabled={!isConnected || loading}
-                className="w-full mt-4 bg-white text-slate-950 font-bold py-3 rounded-xl hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full mt-6 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] disabled:opacity-50 disabled:shadow-none"
               >
-                {loading ? 'Processing...' : 'Buy Ticket'}
+                {loading ? 'Processing...' : 'Enter Draw'}
               </button>
             ) : (
-              <div className="w-full mt-4 bg-slate-800 text-slate-500 font-semibold py-3 rounded-xl text-center">
-                Winner Selected
-              </div>
+              <button disabled className="w-full mt-6 bg-white/5 text-slate-500 font-medium py-3 rounded-xl cursor-not-allowed">
+                Winner: {raffle.creator.slice(0,6)}...
+              </button>
             )}
           </div>
         </div>
